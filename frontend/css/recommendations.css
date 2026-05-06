@@ -166,27 +166,29 @@
 
 .rec-table tr:hover td { background: #fbfcff; }
 .cell-id { color: #315fd4; font-family: "SFMono-Regular", "Cascadia Mono", Consolas, monospace; font-size: 13px; font-weight: 760; }
-.cell-creator { display: flex; align-items: center; gap: 10px; }
+.cell-creator { white-space: nowrap; }
 
 .creator-avatar {
   width: 32px;
   height: 32px;
-  display: grid;
+  display: inline-grid;
   place-items: center;
-  flex: 0 0 auto;
+  margin-right: 10px;
   border-radius: 11px;
   color: #fff;
   font-size: 11px;
   font-weight: 760;
+  vertical-align: middle;
 }
 
-.cell-timeslot { display: flex; align-items: center; gap: 8px; }
+.cell-timeslot { white-space: nowrap; }
 .time-badge { padding: 5px 9px; border-radius: 999px; background: #f3f5f8; color: var(--text); font-family: "SFMono-Regular", "Cascadia Mono", Consolas, monospace; font-size: 12px; font-weight: 720; }
+.cell-timeslot .time-badge { margin-right: 8px; }
 .time-label { color: var(--muted); font-size: 12px; }
-.cell-score { display: flex; align-items: center; gap: 8px; }
-.score-bar-wrap { width: 76px; height: 8px; overflow: hidden; border-radius: 999px; background: #edf0f5; }
+.cell-score { white-space: nowrap; }
+.score-bar-wrap { width: 76px; height: 8px; display: inline-block; overflow: hidden; margin-right: 8px; border-radius: 999px; background: #edf0f5; vertical-align: middle; }
 .score-bar-fill { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #65c796, var(--green)); }
-.score-value { min-width: 36px; color: var(--text-soft); font-size: 13px; font-weight: 720; }
+.score-value { display: inline-block; min-width: 36px; color: var(--text-soft); font-size: 13px; font-weight: 720; vertical-align: middle; }
 .category-chip { display: inline-flex; align-items: center; min-height: 28px; padding: 5px 9px; border-radius: 999px; background: #eef6f4; color: #0f766e; font-size: 12px; font-weight: 740; }
 .why-cell { max-width: 260px; overflow: hidden; color: var(--muted); font-size: 12px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
 
