@@ -21,7 +21,7 @@
         <a href="recommendations.html" class="nav-link"><span class="nav-icon">R</span>Recommendations</a>
         <a href="analytics.html" class="nav-link"><span class="nav-icon">A</span>Analytics</a>
       </nav>
-      <div class="sidebar-card"><strong>Posting model live</strong><span>Instagram and YouTube slots are evaluated across 24-hour windows.</span></div>
+      <div class="sidebar-card"><strong>Posting model live</strong><span>Instagram and YouTube slots are evaluated with creator, category, and current-time signals.</span></div>
     </aside>
 
     <div class="main-area">
@@ -47,7 +47,7 @@
             <div class="preview-grid">
               <div class="preview-panel large">
                 <div class="preview-label">Recommended slot</div>
-                <div class="preview-value">8:00 PM</div>
+                <div class="preview-value">7:00 PM</div>
                 <div class="preview-line"></div>
                 <div class="preview-line short"></div>
               </div>
@@ -113,10 +113,10 @@
             <article class="card">
               <div class="card-header"><div class="card-title">Decision logic</div></div>
               <ul class="info-list">
-                <li>Short formats lean toward Instagram.</li>
-                <li>Long formats lean toward YouTube.</li>
-                <li>Peak slots return POST_NOW.</li>
-                <li>Creator and activity signals adjust the final choice.</li>
+                <li>Every platform-hour pair is scored jointly.</li>
+                <li>Creator and category signals can override format defaults.</li>
+                <li>POST_NOW requires the current hour to be close to optimal.</li>
+                <li>Nearby windows and competition adjust final timing.</li>
               </ul>
             </article>
           </aside>

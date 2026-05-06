@@ -18,7 +18,7 @@
         <a href="recommendations.html" class="nav-link"><span class="nav-icon">R</span>Recommendations</a>
         <a href="analytics.html" class="nav-link"><span class="nav-icon">A</span>Analytics</a>
       </nav>
-      <div class="sidebar-card"><strong>Fast decision flow</strong><span>Enter three content signals and receive an explainable recommendation.</span></div>
+      <div class="sidebar-card"><strong>Fast decision flow</strong><span>Enter creator, format, category, and timing signals for an explainable recommendation.</span></div>
     </aside>
 
     <div class="main-area">
@@ -72,6 +72,25 @@
               </div>
 
               <div class="form-group">
+                <label class="form-label" for="content-category">Content category <span class="required">*</span></label>
+                <select id="content-category" class="form-input">
+                  <option value="Gaming">Gaming</option>
+                  <option value="Cooking">Cooking</option>
+                  <option value="Dancing">Dancing</option>
+                  <option value="Education">Education</option>
+                  <option value="Tech">Tech</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Fitness">Fitness</option>
+                  <option value="Comedy">Comedy</option>
+                  <option value="Music">Music</option>
+                  <option value="Travel">Travel</option>
+                  <option value="Fashion">Fashion</option>
+                  <option value="Motivation">Motivation</option>
+                </select>
+                <div class="form-error-msg">Choose a valid content category.</div>
+              </div>
+
+              <div class="form-group">
                 <label class="form-label" for="created-timestamp">Current time slot <span class="required">*</span><span class="hint">hour 0-23</span></label>
                 <div class="timestamp-row">
                   <input type="number" id="created-timestamp" class="form-input" placeholder="14" min="0" max="23" />
@@ -88,13 +107,31 @@
               <div class="result-body">
                 <div class="result-field"><div class="result-field-label">Content ID</div><div class="result-field-value font-mono" id="res-content-id">-</div></div>
                 <div class="result-field"><div class="result-field-label">Content type</div><div class="result-field-value" id="res-content-type">-</div></div>
+                <div class="result-field"><div class="result-field-label">Category</div><div class="result-field-value" id="res-category">-</div></div>
                 <div class="result-field primary-result"><div class="result-field-label">Recommended platform</div><div class="result-field-value highlight" id="res-platform">-</div></div>
                 <div class="result-field primary-result"><div class="result-field-label">Best posting time</div><div class="result-field-value highlight" id="res-time-slot">-</div></div>
                 <div class="result-field primary-result"><div class="result-field-label">Expected engagement</div><div class="result-field-value highlight" id="res-engagement">High</div></div>
+                <div class="result-field primary-result"><div class="result-field-label">Confidence</div><div class="result-field-value highlight" id="res-confidence">-</div></div>
                 <div class="result-field primary-result"><div class="result-field-label">Status</div><div id="res-decision" class="decision-output">-</div></div>
               </div>
               <div class="result-footer">
                 <p class="text-muted" id="res-reason"></p>
+                <section class="why-panel" aria-label="Why this recommendation">
+                  <h4>Why this recommendation?</h4>
+                  <div class="why-grid">
+                    <div><strong>Timing</strong><span id="why-timing">-</span></div>
+                    <div><strong>Platform</strong><span id="why-platform">-</span></div>
+                    <div><strong>Decision</strong><span id="why-decision">-</span></div>
+                    <div><strong>Scoring</strong><span id="why-score">-</span></div>
+                  </div>
+                  <div class="component-bars">
+                    <span style="--label:'Engagement'"><i id="component-engagement"></i></span>
+                    <span style="--label:'Activity'"><i id="component-activity"></i></span>
+                    <span style="--label:'Creator'"><i id="component-creator"></i></span>
+                    <span style="--label:'Category'"><i id="component-category"></i></span>
+                    <span style="--label:'Timing'"><i id="component-timing"></i></span>
+                  </div>
+                </section>
                 <div class="result-actions"><a href="recommendations.html" class="btn btn-outline btn-sm">View history</a><button class="btn btn-muted btn-sm" type="button" id="submit-another-btn">Submit another</button></div>
               </div>
             </section>
@@ -104,12 +141,12 @@
             <article class="info-card">
               <h4>Peak posting windows</h4>
               <div class="peak-times-grid">
-                <div class="peak-platform-row"><div class="peak-platform-label">Instagram <span class="badge badge-instagram">18-22h</span></div><div class="peak-bar-wrap" id="ig-bar"></div></div>
-                <div class="peak-platform-row"><div class="peak-platform-label">YouTube <span class="badge badge-youtube">20-23h</span></div><div class="peak-bar-wrap" id="yt-bar"></div></div>
+                <div class="peak-platform-row"><div class="peak-platform-label">Instagram <span class="badge badge-instagram">dynamic</span></div><div class="peak-bar-wrap" id="ig-bar"></div></div>
+                <div class="peak-platform-row"><div class="peak-platform-label">YouTube <span class="badge badge-youtube">dynamic</span></div><div class="peak-bar-wrap" id="yt-bar"></div></div>
               </div>
             </article>
-            <article class="info-card"><h4>What the model considers</h4><ul class="info-list"><li>Content format and platform fit.</li><li>Creator-level historical behavior.</li><li>Platform activity by hour.</li><li>Recommendation speed and consistency.</li></ul></article>
-            <article class="info-card"><h4>Output</h4><ul class="info-list"><li>Recommended platform.</li><li>Best posting time.</li><li>Expected engagement level.</li><li>POST_NOW or SCHEDULE status.</li></ul></article>
+            <article class="info-card"><h4>What the model considers</h4><ul class="info-list"><li>Content format, category, and platform fit.</li><li>Creator-level historical behavior.</li><li>Nearby platform activity by hour.</li><li>Competition and current-time quality.</li></ul></article>
+            <article class="info-card"><h4>Output</h4><ul class="info-list"><li>Recommended platform.</li><li>Best posting time.</li><li>Confidence score.</li><li>POST_NOW or SCHEDULE status.</li></ul></article>
           </aside>
         </section>
       </main>

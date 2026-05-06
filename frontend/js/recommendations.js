@@ -32,7 +32,7 @@ function updateSummaryCards() {
 }
 
 function bindFilters() {
-  ['filter-platform', 'filter-type', 'filter-decision'].forEach((id) => {
+  ['filter-platform', 'filter-type', 'filter-category', 'filter-decision'].forEach((id) => {
     document.getElementById(id)?.addEventListener('change', applyFilters);
   });
 
@@ -49,16 +49,18 @@ function bindFilters() {
 function applyFilters() {
   const platform = document.getElementById('filter-platform')?.value || '';
   const type = document.getElementById('filter-type')?.value || '';
+  const category = document.getElementById('filter-category')?.value || '';
   const decision = document.getElementById('filter-decision')?.value || '';
   const query = (document.getElementById('search-input')?.value || '').trim().toLowerCase();
 
   filtered = allRecs.filter((rec) => {
     if (platform && rec.platform !== platform) return false;
     if (type && rec.content_type !== type) return false;
+    if (category && rec.content_category !== category) return false;
     if (decision && rec.decision !== decision) return false;
     if (!query) return true;
 
-    const searchable = `${rec.content_id} ${rec.creator_id} ${rec.platform} ${rec.content_type} ${rec.decision}`.toLowerCase();
+    const searchable = `${rec.content_id} ${rec.creator_id} ${rec.platform} ${rec.content_type} ${rec.content_category || ''} ${rec.decision}`.toLowerCase();
     return searchable.includes(query);
   });
 
@@ -108,7 +110,7 @@ function renderTable() {
   const page = filtered.slice(start, start + PAGE_SIZE);
 
   if (page.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state"><div class="empty-icon">No matches</div><p>No recommendations match your filters.</p></div></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="10"><div class="empty-state"><div class="empty-icon">No matches</div><p>No recommendations match your filters.</p></div></td></tr>';
     renderPagination();
     updateResultCount();
     bindSortHeaders();
@@ -122,10 +124,13 @@ function renderTable() {
         <td class="cell-id">#${rec.content_id}</td>
         <td class="cell-creator"><span class="creator-avatar" style="background:${creatorColor(rec.creator_id)}">${rec.creator_id}</span><span>Creator ${rec.creator_id}</span></td>
         <td><span class="badge ${rec.content_type === 'SHORT' ? 'badge-short' : 'badge-long'}">${rec.content_type}</span></td>
+        <td><span class="category-chip">${rec.content_category || 'General'}</span></td>
         <td><span class="badge ${platformBadgeClass(rec.platform)}">${platformLabel(rec.platform)}</span></td>
         <td class="cell-timeslot"><span class="time-badge">${String(rec.time_slot).padStart(2, '0')}:00</span><span class="time-label">${formatHour(rec.time_slot)}</span></td>
         <td>${decisionBadge(rec.decision)}</td>
+        <td class="cell-score"><span class="score-value">${Math.round((rec.confidence || 0) * 100)}%</span></td>
         <td class="cell-score"><span class="score-bar-wrap"><span class="score-bar-fill" style="width:${Math.max(0, Math.min(100, scoreValue * 100))}%"></span></span><span class="score-value">${scoreValue.toFixed(2)}</span></td>
+        <td class="why-cell" title="${escapeAttr(rec.explanation?.summary || '')}">${rec.explanation?.summary || 'Weighted scoring recommendation.'}</td>
       </tr>
     `;
   }).join('');
@@ -199,7 +204,7 @@ function updateResultCount() {
 function setTableLoading(loading) {
   const tbody = document.getElementById('rec-table-body');
   if (loading && tbody) {
-    tbody.innerHTML = '<tr><td colspan="7"><div class="loading-overlay"><div class="spinner"></div> Fetching recommendations...</div></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="10"><div class="loading-overlay"><div class="spinner"></div> Fetching recommendations...</div></td></tr>';
   }
 }
 
@@ -208,8 +213,11 @@ function bindExport() {
 }
 
 function exportCSV(data) {
-  const headers = ['content_id', 'creator_id', 'content_type', 'platform', 'time_slot', 'decision', 'score'];
-  const rows = data.map(rec => headers.map(header => JSON.stringify(rec[header] ?? '')).join(','));
+  const headers = ['content_id', 'creator_id', 'content_type', 'content_category', 'platform', 'time_slot', 'decision', 'confidence', 'score', 'explanation'];
+  const rows = data.map(rec => headers.map((header) => {
+    const value = header === 'explanation' ? rec.explanation?.summary : rec[header];
+    return JSON.stringify(value ?? '');
+  }).join(','));
   const csv = [headers.join(','), ...rows].join('\n');
   const blob = new Blob([csv], { type: 'text/csv' });
   const url = URL.createObjectURL(blob);
@@ -223,4 +231,12 @@ function exportCSV(data) {
 function setText(id, value) {
   const el = document.getElementById(id);
   if (el) el.textContent = value;
+}
+
+function escapeAttr(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }

@@ -40,6 +40,7 @@
           <label class="search-wrap" for="search-input"><span class="search-icon">Search</span><input type="text" id="search-input" placeholder="ID, creator, platform, type..." /></label>
           <div class="filter-group"><label class="filter-label" for="filter-platform">Platform</label><select id="filter-platform" class="filter-select"><option value="">All</option><option value="Instagram">Instagram</option><option value="YouTube">YouTube</option></select></div>
           <div class="filter-group"><label class="filter-label" for="filter-type">Type</label><select id="filter-type" class="filter-select"><option value="">All</option><option value="SHORT">Short</option><option value="LONG">Long</option></select></div>
+          <div class="filter-group"><label class="filter-label" for="filter-category">Category</label><select id="filter-category" class="filter-select"><option value="">All</option><option value="Gaming">Gaming</option><option value="Cooking">Cooking</option><option value="Dancing">Dancing</option><option value="Education">Education</option><option value="Tech">Tech</option><option value="Finance">Finance</option><option value="Fitness">Fitness</option><option value="Comedy">Comedy</option><option value="Music">Music</option><option value="Travel">Travel</option><option value="Fashion">Fashion</option><option value="Motivation">Motivation</option></select></div>
           <div class="filter-group"><label class="filter-label" for="filter-decision">Status</label><select id="filter-decision" class="filter-select"><option value="">All</option><option value="POST_NOW">Post now</option><option value="SCHEDULE">Schedule</option></select></div>
           <div class="toolbar-right"><span class="result-count" id="result-count">- results</span><button class="export-btn" id="export-btn">Export CSV</button></div>
         </section>
@@ -47,8 +48,8 @@
         <section class="rec-table-wrap">
           <div class="table-scroll">
             <table class="rec-table">
-              <thead><tr><th data-sort="content_id">Content <span class="sort-icon"></span></th><th data-sort="creator_id">Creator <span class="sort-icon"></span></th><th data-sort="content_type">Type <span class="sort-icon"></span></th><th data-sort="platform">Platform <span class="sort-icon"></span></th><th data-sort="time_slot">Time <span class="sort-icon"></span></th><th data-sort="decision">Status <span class="sort-icon"></span></th><th data-sort="score">Score <span class="sort-icon"></span></th></tr></thead>
-              <tbody id="rec-table-body"><tr><td colspan="7"><div class="loading-overlay"><div class="spinner"></div> Loading recommendations...</div></td></tr></tbody>
+              <thead><tr><th data-sort="content_id">Content <span class="sort-icon"></span></th><th data-sort="creator_id">Creator <span class="sort-icon"></span></th><th data-sort="content_type">Type <span class="sort-icon"></span></th><th data-sort="content_category">Category <span class="sort-icon"></span></th><th data-sort="platform">Platform <span class="sort-icon"></span></th><th data-sort="time_slot">Time <span class="sort-icon"></span></th><th data-sort="decision">Status <span class="sort-icon"></span></th><th data-sort="confidence">Confidence <span class="sort-icon"></span></th><th data-sort="score">Score <span class="sort-icon"></span></th><th>Why</th></tr></thead>
+              <tbody id="rec-table-body"><tr><td colspan="10"><div class="loading-overlay"><div class="spinner"></div> Loading recommendations...</div></td></tr></tbody>
             </table>
           </div>
           <div class="pagination"><span class="pagination-info" id="pagination-info">Showing - of -</span><div class="pagination-controls" id="pagination-controls"></div></div>

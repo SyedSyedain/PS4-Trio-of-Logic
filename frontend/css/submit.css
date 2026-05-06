@@ -185,6 +185,82 @@
 .result-footer { padding: 0 24px 24px; }
 .result-actions { display: flex; gap: 10px; margin-top: 14px; }
 
+.why-panel {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.why-panel h4 {
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 780;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.why-grid div {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fbfaf7;
+}
+
+.why-grid strong {
+  display: block;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 780;
+}
+
+.why-grid span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.component-bars {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.component-bars span {
+  position: relative;
+  height: 28px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #edf0f5;
+}
+
+.component-bars span::after {
+  content: var(--label);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-soft);
+  font-size: 10px;
+  font-weight: 780;
+}
+
+.component-bars i {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #93c5fd, #65c796);
+  transition: width 260ms ease;
+}
+
 .info-sidebar { display: flex; flex-direction: column; gap: 22px; }
 .info-card {
   padding: 0 0 22px;
@@ -216,4 +292,6 @@
   .timestamp-row,
   .result-actions { align-items: stretch; flex-direction: column; }
   .creator-row .form-input { width: 100%; }
+  .why-grid,
+  .component-bars { grid-template-columns: 1fr; }
 }

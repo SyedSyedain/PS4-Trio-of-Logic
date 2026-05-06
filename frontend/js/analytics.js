@@ -25,9 +25,9 @@ function updateHeroScore(scores) {
 
   [
     { id: 'hero-bar-engagement', value: scores.engagement, color: '#93c5fd' },
-    { id: 'hero-bar-timing', value: scores.timing, color: '#67e8f9' },
-    { id: 'hero-bar-platform', value: scores.platform_quality, color: '#86efac' },
-    { id: 'hero-bar-efficiency', value: scores.efficiency, color: '#fcd34d' },
+    { id: 'hero-bar-timing', value: scores.activity || scores.timing, color: '#67e8f9' },
+    { id: 'hero-bar-platform', value: scores.creator_affinity || scores.platform_quality, color: '#86efac' },
+    { id: 'hero-bar-efficiency', value: scores.category || scores.timing, color: '#fcd34d' },
   ].forEach((metric) => {
     const bar = document.getElementById(metric.id);
     const value = document.getElementById(metric.id.replace('bar', 'val'));
@@ -43,9 +43,9 @@ function updateHeroScore(scores) {
 function updateMetricCards(scores) {
   [
     { scoreId: 'card-engagement', barId: 'bar-engagement', value: scores.engagement },
-    { scoreId: 'card-timing', barId: 'bar-timing', value: scores.timing },
-    { scoreId: 'card-platform', barId: 'bar-platform', value: scores.platform_quality },
-    { scoreId: 'card-efficiency', barId: 'bar-efficiency', value: scores.efficiency },
+    { scoreId: 'card-timing', barId: 'bar-timing', value: scores.activity || scores.timing },
+    { scoreId: 'card-platform', barId: 'bar-platform', value: scores.creator_affinity || scores.platform_quality },
+    { scoreId: 'card-efficiency', barId: 'bar-efficiency', value: scores.category || scores.timing },
   ].forEach((metric) => {
     const scoreEl = document.getElementById(metric.scoreId);
     const barEl = document.getElementById(metric.barId);
@@ -81,7 +81,7 @@ function renderActivityChart(containerId, data, cls) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
-  const peakWindow = cls === 'ig' ? '18-22h peak' : '20-23h peak';
+  const peakWindow = cls === 'ig' ? 'Instagram activity curve' : 'YouTube activity curve';
   const chart = document.createElement('div');
   chart.className = 'bar-chart-custom';
 
@@ -153,20 +153,23 @@ function renderFormulaBreakdown() {
         <div class="formula-main">
           <span>Final Score</span>
           <span class="formula-equals">=</span>
-          <span class="formula-term"><span class="formula-weight">50%</span><span class="formula-variable">Engagement</span></span>
+          <span class="formula-term"><span class="formula-weight">40%</span><span class="formula-variable">Engagement</span></span>
           <span class="formula-plus">+</span>
-          <span class="formula-term"><span class="formula-weight">20%</span><span class="formula-variable">Timing</span></span>
+          <span class="formula-term"><span class="formula-weight">20%</span><span class="formula-variable">Activity</span></span>
           <span class="formula-plus">+</span>
-          <span class="formula-term"><span class="formula-weight">15%</span><span class="formula-variable">Platform</span></span>
+          <span class="formula-term"><span class="formula-weight">15%</span><span class="formula-variable">Creator</span></span>
           <span class="formula-plus">+</span>
-          <span class="formula-term"><span class="formula-weight">15%</span><span class="formula-variable">Efficiency</span></span>
+          <span class="formula-term"><span class="formula-weight">15%</span><span class="formula-variable">Category</span></span>
+          <span class="formula-plus">+</span>
+          <span class="formula-term"><span class="formula-weight">10%</span><span class="formula-variable">Timing</span></span>
         </div>
       </div>
       <div class="formula-breakdown">
-        <div class="formula-chip"><strong>Engagement</strong><span>Creator history + activity</span></div>
-        <div class="formula-chip"><strong>Timing</strong><span>Peak-window fit</span></div>
-        <div class="formula-chip"><strong>Platform</strong><span>Format alignment</span></div>
-        <div class="formula-chip"><strong>Efficiency</strong><span>Generation speed</span></div>
+        <div class="formula-chip"><strong>Engagement</strong><span>Creator history + expected lift</span></div>
+        <div class="formula-chip"><strong>Activity</strong><span>Nearby platform windows</span></div>
+        <div class="formula-chip"><strong>Creator</strong><span>Personal posting tendency</span></div>
+        <div class="formula-chip"><strong>Category</strong><span>Topic-specific behavior</span></div>
+        <div class="formula-chip"><strong>Timing</strong><span>Competition + wait quality</span></div>
       </div>
     </div>
   `;

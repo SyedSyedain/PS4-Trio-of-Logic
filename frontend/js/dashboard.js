@@ -88,7 +88,7 @@ function renderHeatmapLegend() {
       <span class="legend-dot" style="background:#8c69d9"></span><span>Instagram peak</span>
       <span class="legend-dot" style="background:#ea8a76"></span><span>YouTube peak</span>
       <span class="legend-dot" style="background:#eee9ff"></span><span>Low activity</span>
-      <span>IG: 18-22h | YT: 20-23h</span>
+      <span>Activity is smoothed across nearby hours</span>
     </div>
   `;
 }
@@ -128,10 +128,10 @@ function renderScoreSummary() {
   if (!wrap) return;
 
   const metrics = [
-    { label: 'Engagement', value: 0.78, color: '#2563eb' },
-    { label: 'Timing', value: 0.85, color: '#0891b2' },
-    { label: 'Platform', value: 0.91, color: '#059669' },
-    { label: 'Efficiency', value: 0.96, color: '#d97706' },
+    { label: 'Engagement', value: 0.81, color: '#2563eb' },
+    { label: 'Activity', value: 0.78, color: '#0891b2' },
+    { label: 'Creator', value: 0.74, color: '#059669' },
+    { label: 'Category', value: 0.76, color: '#d97706' },
   ];
 
   wrap.innerHTML = metrics.map(metric => `
