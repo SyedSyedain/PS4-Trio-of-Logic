@@ -1,0 +1,236 @@
+.rec-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+.rec-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  min-height: 94px;
+  padding: 4px 0 18px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.rec-summary-card:hover { box-shadow: none; border-color: var(--border); }
+
+.rec-summary-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  background: var(--blue-soft);
+  color: #315fd4;
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.rec-summary-icon.instagram { background: var(--purple-soft); color: var(--purple); }
+.rec-summary-icon.youtube { background: var(--orange-soft); color: var(--orange); }
+.rec-summary-info strong { display: block; color: var(--text); font-size: 26px; line-height: 1; font-weight: 760; }
+.rec-summary-info span { display: block; margin-top: 7px; color: var(--muted); font-size: 14px; }
+
+.rec-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 0 0 18px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+
+.search-wrap {
+  min-width: 270px;
+  max-width: 380px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 15px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: #fff;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.search-wrap:focus-within {
+  border-color: #b8c8ff;
+  box-shadow: 0 0 0 4px rgba(79, 124, 255, 0.1);
+}
+
+.search-icon {
+  color: var(--muted-2);
+  font-size: 11px;
+  font-weight: 760;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.search-wrap input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.filter-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.filter-select {
+  min-height: 46px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: #fff;
+  outline: none;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+.filter-select:focus { border-color: #b8c8ff; }
+.toolbar-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.result-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
+
+.export-btn {
+  min-height: 44px;
+  padding: 9px 13px;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: 720;
+}
+
+.export-btn:hover {
+  border-color: #b8c8ff;
+  background: var(--blue-soft);
+}
+
+.rec-table-wrap {
+  overflow: hidden;
+  border-color: rgba(215, 220, 229, 0.74);
+  box-shadow: 0 18px 54px rgba(24, 24, 27, 0.06);
+}
+.rec-table { width: 100%; min-width: 860px; border-collapse: collapse; font-size: 15px; }
+
+.rec-table th {
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #ffffff, #fbfaf7);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 760;
+  text-align: left;
+  text-transform: uppercase;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.rec-table th:hover { background: #f5f6fa; }
+.sort-icon { margin-left: 5px; color: #315fd4; }
+.sorted-asc .sort-icon::after { content: "^"; }
+.sorted-desc .sort-icon::after { content: "v"; }
+
+.rec-table td {
+  padding: 17px 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-soft);
+  vertical-align: middle;
+}
+
+.rec-table tr:hover td { background: #fbfcff; }
+.cell-id { color: #315fd4; font-family: "SFMono-Regular", "Cascadia Mono", Consolas, monospace; font-size: 13px; font-weight: 760; }
+.cell-creator { display: flex; align-items: center; gap: 10px; }
+
+.creator-avatar {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 11px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.cell-timeslot { display: flex; align-items: center; gap: 8px; }
+.time-badge { padding: 5px 9px; border-radius: 999px; background: #f3f5f8; color: var(--text); font-family: "SFMono-Regular", "Cascadia Mono", Consolas, monospace; font-size: 12px; font-weight: 720; }
+.time-label { color: var(--muted); font-size: 12px; }
+.cell-score { display: flex; align-items: center; gap: 8px; }
+.score-bar-wrap { width: 76px; height: 8px; overflow: hidden; border-radius: 999px; background: #edf0f5; }
+.score-bar-fill { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #65c796, var(--green)); }
+.score-value { min-width: 36px; color: var(--text-soft); font-size: 13px; font-weight: 720; }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  background: #fbfaf7;
+}
+
+.pagination-info { color: var(--muted); font-size: 13px; }
+.pagination-controls { display: flex; align-items: center; gap: 6px; }
+
+.page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 9px;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.page-btn:hover:not(:disabled) {
+  border-color: #b8c8ff;
+  background: var(--blue-soft);
+}
+
+.page-btn.active {
+  border-color: #416ee5;
+  background: #416ee5;
+  color: #fff;
+}
+
+.page-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+@media (max-width: 780px) {
+  .rec-summary { grid-template-columns: 1fr; }
+  .rec-toolbar { align-items: stretch; flex-direction: column; }
+  .search-wrap { min-width: 0; max-width: none; width: 100%; }
+  .filter-group,
+  .toolbar-right { width: 100%; align-items: stretch; flex-direction: column; margin-left: 0; }
+  .pagination { align-items: stretch; flex-direction: column; }
+}

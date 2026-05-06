@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendations | CreatorPost</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/recommendations.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a href="index.html" class="brand"><span class="brand-mark">CP</span><span><span class="brand-title">CreatorPost</span><span class="brand-subtitle">Optimization System</span></span></a>
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <span class="nav-section-label">Workspace</span>
+        <a href="index.html" class="nav-link"><span class="nav-icon">D</span>Dashboard</a>
+        <a href="submit.html" class="nav-link"><span class="nav-icon">+</span>Submit Content</a>
+        <a href="recommendations.html" class="nav-link active"><span class="nav-icon">R</span>Recommendations</a>
+        <a href="analytics.html" class="nav-link"><span class="nav-icon">A</span>Analytics</a>
+      </nav>
+      <div class="sidebar-card"><strong>Decision history</strong><span>Review generated recommendations with filtering, sorting, and export.</span></div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar"><div class="topbar-title">Recommendation History</div><div class="topbar-actions"><a href="submit.html" class="btn btn-primary btn-sm">New submission</a></div></header>
+      <main class="page-wrapper">
+        <header class="page-header">
+          <span class="eyebrow">History table</span>
+          <h1>All generated recommendations in one searchable view.</h1>
+          <p>Track platform decisions, posting windows, status, creator IDs, and score quality with a polished operational table.</p>
+        </header>
+
+        <section class="rec-summary">
+          <article class="rec-summary-card"><span class="rec-summary-icon">All</span><div class="rec-summary-info"><strong id="sum-total">-</strong><span>Total recommendations</span></div></article>
+          <article class="rec-summary-card"><span class="rec-summary-icon instagram">IG</span><div class="rec-summary-info"><strong id="sum-ig">-</strong><span>Instagram decisions</span></div></article>
+          <article class="rec-summary-card"><span class="rec-summary-icon youtube">YT</span><div class="rec-summary-info"><strong id="sum-yt">-</strong><span>YouTube decisions</span></div></article>
+        </section>
+
+        <section class="rec-toolbar">
+          <label class="search-wrap" for="search-input"><span class="search-icon">Search</span><input type="text" id="search-input" placeholder="ID, creator, platform, type..." /></label>
+          <div class="filter-group"><label class="filter-label" for="filter-platform">Platform</label><select id="filter-platform" class="filter-select"><option value="">All</option><option value="Instagram">Instagram</option><option value="YouTube">YouTube</option></select></div>
+          <div class="filter-group"><label class="filter-label" for="filter-type">Type</label><select id="filter-type" class="filter-select"><option value="">All</option><option value="SHORT">Short</option><option value="LONG">Long</option></select></div>
+          <div class="filter-group"><label class="filter-label" for="filter-decision">Status</label><select id="filter-decision" class="filter-select"><option value="">All</option><option value="POST_NOW">Post now</option><option value="SCHEDULE">Schedule</option></select></div>
+          <div class="toolbar-right"><span class="result-count" id="result-count">- results</span><button class="export-btn" id="export-btn">Export CSV</button></div>
+        </section>
+
+        <section class="rec-table-wrap">
+          <div class="table-scroll">
+            <table class="rec-table">
+              <thead><tr><th data-sort="content_id">Content <span class="sort-icon"></span></th><th data-sort="creator_id">Creator <span class="sort-icon"></span></th><th data-sort="content_type">Type <span class="sort-icon"></span></th><th data-sort="platform">Platform <span class="sort-icon"></span></th><th data-sort="time_slot">Time <span class="sort-icon"></span></th><th data-sort="decision">Status <span class="sort-icon"></span></th><th data-sort="score">Score <span class="sort-icon"></span></th></tr></thead>
+              <tbody id="rec-table-body"><tr><td colspan="7"><div class="loading-overlay"><div class="spinner"></div> Loading recommendations...</div></td></tr></tbody>
+            </table>
+          </div>
+          <div class="pagination"><span class="pagination-info" id="pagination-info">Showing - of -</span><div class="pagination-controls" id="pagination-controls"></div></div>
+        </section>
+      </main>
+      <footer class="footer">Search, sort, filter, and export content recommendation history.</footer>
+    </div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/recommendations.js"></script>
+</body>
+</html>

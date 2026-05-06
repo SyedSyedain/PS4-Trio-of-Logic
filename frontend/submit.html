@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Content | CreatorPost</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/submit.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a href="index.html" class="brand"><span class="brand-mark">CP</span><span><span class="brand-title">CreatorPost</span><span class="brand-subtitle">Optimization System</span></span></a>
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <span class="nav-section-label">Workspace</span>
+        <a href="index.html" class="nav-link"><span class="nav-icon">D</span>Dashboard</a>
+        <a href="submit.html" class="nav-link active"><span class="nav-icon">+</span>Submit Content</a>
+        <a href="recommendations.html" class="nav-link"><span class="nav-icon">R</span>Recommendations</a>
+        <a href="analytics.html" class="nav-link"><span class="nav-icon">A</span>Analytics</a>
+      </nav>
+      <div class="sidebar-card"><strong>Fast decision flow</strong><span>Enter three content signals and receive an explainable recommendation.</span></div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar"><div class="topbar-title">Submit Content</div><div class="topbar-actions"><span class="status-pill"><span class="status-dot"></span>Ready</span></div></header>
+      <main class="page-wrapper">
+        <header class="page-header">
+          <span class="eyebrow">Recommendation builder</span>
+          <h1>Generate a clear posting recommendation.</h1>
+          <p>Use a focused form to identify the best platform, strongest time slot, expected engagement, and whether the content should be posted now or scheduled.</p>
+        </header>
+
+        <div id="submit-error" class="alert alert-error" style="display:none"></div>
+
+        <section class="submit-container">
+          <article class="form-card">
+            <div class="form-title">Content details</div>
+            <div class="form-description">Keep inputs simple and consistent so the output is easy to trust.</div>
+
+            <form id="submit-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="content-id">Content ID <span class="required">*</span><span class="hint">auto-filled if blank</span></label>
+                <input type="number" id="content-id" class="form-input" placeholder="1042" min="1" />
+                <div class="form-error-msg">Enter a valid Content ID greater than or equal to 1.</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="creator-id">Creator ID <span class="required">*</span><span class="hint">1-50</span></label>
+                <div class="creator-input-wrap">
+                  <div class="creator-row">
+                    <input type="number" id="creator-id" class="form-input" value="1" min="1" max="50" />
+                    <input type="range" id="creator-slider" class="creator-slider" min="1" max="50" value="1" />
+                  </div>
+                  <div class="creator-range-labels"><span>Creator 1</span><span>Creator 50</span></div>
+                </div>
+                <div class="form-error-msg">Creator ID must be between 1 and 50.</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Content type <span class="required">*</span></label>
+                <div class="type-toggle">
+                  <div class="type-option">
+                    <input type="radio" name="content_type" id="type-short" value="SHORT" checked />
+                    <label for="type-short"><span class="type-option-icon">S</span><span class="type-option-name">Short-form</span><span class="type-option-desc">Reels, stories, shorts</span></label>
+                  </div>
+                  <div class="type-option">
+                    <input type="radio" name="content_type" id="type-long" value="LONG" />
+                    <label for="type-long"><span class="type-option-icon">L</span><span class="type-option-name">Long-form</span><span class="type-option-desc">Videos, vlogs, episodes</span></label>
+                  </div>
+                </div>
+                <div class="form-error-msg" id="type-error" style="display:none">Please select a content type.</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="created-timestamp">Current time slot <span class="required">*</span><span class="hint">hour 0-23</span></label>
+                <div class="timestamp-row">
+                  <input type="number" id="created-timestamp" class="form-input" placeholder="14" min="0" max="23" />
+                  <button type="button" class="now-btn" id="now-btn">Use current hour</button>
+                </div>
+                <div class="form-error-msg">Time slot must be between 0 and 23.</div>
+              </div>
+
+              <div class="submit-btn-wrap"><button type="submit" class="btn btn-primary" id="submit-btn">Generate recommendation</button></div>
+            </form>
+
+            <section class="result-panel" id="result-panel">
+              <div class="result-header"><span class="result-check">OK</span><div><h3>Recommendation ready</h3><p>Review the suggested platform and timing before publishing.</p></div></div>
+              <div class="result-body">
+                <div class="result-field"><div class="result-field-label">Content ID</div><div class="result-field-value font-mono" id="res-content-id">-</div></div>
+                <div class="result-field"><div class="result-field-label">Content type</div><div class="result-field-value" id="res-content-type">-</div></div>
+                <div class="result-field primary-result"><div class="result-field-label">Recommended platform</div><div class="result-field-value highlight" id="res-platform">-</div></div>
+                <div class="result-field primary-result"><div class="result-field-label">Best posting time</div><div class="result-field-value highlight" id="res-time-slot">-</div></div>
+                <div class="result-field primary-result"><div class="result-field-label">Expected engagement</div><div class="result-field-value highlight" id="res-engagement">High</div></div>
+                <div class="result-field primary-result"><div class="result-field-label">Status</div><div id="res-decision" class="decision-output">-</div></div>
+              </div>
+              <div class="result-footer">
+                <p class="text-muted" id="res-reason"></p>
+                <div class="result-actions"><a href="recommendations.html" class="btn btn-outline btn-sm">View history</a><button class="btn btn-muted btn-sm" type="button" id="submit-another-btn">Submit another</button></div>
+              </div>
+            </section>
+          </article>
+
+          <aside class="info-sidebar">
+            <article class="info-card">
+              <h4>Peak posting windows</h4>
+              <div class="peak-times-grid">
+                <div class="peak-platform-row"><div class="peak-platform-label">Instagram <span class="badge badge-instagram">18-22h</span></div><div class="peak-bar-wrap" id="ig-bar"></div></div>
+                <div class="peak-platform-row"><div class="peak-platform-label">YouTube <span class="badge badge-youtube">20-23h</span></div><div class="peak-bar-wrap" id="yt-bar"></div></div>
+              </div>
+            </article>
+            <article class="info-card"><h4>What the model considers</h4><ul class="info-list"><li>Content format and platform fit.</li><li>Creator-level historical behavior.</li><li>Platform activity by hour.</li><li>Recommendation speed and consistency.</li></ul></article>
+            <article class="info-card"><h4>Output</h4><ul class="info-list"><li>Recommended platform.</li><li>Best posting time.</li><li>Expected engagement level.</li><li>POST_NOW or SCHEDULE status.</li></ul></article>
+          </aside>
+        </section>
+      </main>
+      <footer class="footer">A focused workflow for content publishing decisions.</footer>
+    </div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/submit.js"></script>
+</body>
+</html>

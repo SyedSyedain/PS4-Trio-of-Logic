@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics | CreatorPost</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/analytics.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a href="index.html" class="brand"><span class="brand-mark">CP</span><span><span class="brand-title">CreatorPost</span><span class="brand-subtitle">Optimization System</span></span></a>
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <span class="nav-section-label">Workspace</span>
+        <a href="index.html" class="nav-link"><span class="nav-icon">D</span>Dashboard</a>
+        <a href="submit.html" class="nav-link"><span class="nav-icon">+</span>Submit Content</a>
+        <a href="recommendations.html" class="nav-link"><span class="nav-icon">R</span>Recommendations</a>
+        <a href="analytics.html" class="nav-link active"><span class="nav-icon">A</span>Analytics</a>
+      </nav>
+      <div class="sidebar-card"><strong>Scoring clarity</strong><span>Understand how engagement, timing, platform fit, and efficiency shape the final score.</span></div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar"><div class="topbar-title">Analytics and Scoring</div><div class="topbar-actions"><button class="btn btn-primary btn-sm" id="run-scoring-btn">Refresh scores</button></div></header>
+      <main class="page-wrapper">
+        <header class="page-header">
+          <span class="eyebrow">Performance analytics</span>
+          <h1>Understand why each recommendation is strong.</h1>
+          <p>Use clear, lightweight analytics to inspect timing quality, platform fit, engagement signals, and output reliability.</p>
+        </header>
+
+        <section class="score-hero">
+          <div class="score-hero-left">
+            <span class="eyebrow">Composite score</span>
+            <div class="final-score-value" id="hero-final-score">0.00</div>
+            <div class="score-label">Weighted score across engagement, timing, platform quality, and efficiency.</div>
+          </div>
+          <div class="score-hero-right">
+            <div class="hero-metric-row"><span class="hero-metric-name">Engagement</span><div class="hero-metric-bar-wrap"><div class="hero-metric-bar" id="hero-bar-engagement"></div></div><span class="hero-metric-val" id="hero-val-engagement">0%</span></div>
+            <div class="hero-metric-row"><span class="hero-metric-name">Timing</span><div class="hero-metric-bar-wrap"><div class="hero-metric-bar" id="hero-bar-timing"></div></div><span class="hero-metric-val" id="hero-val-timing">0%</span></div>
+            <div class="hero-metric-row"><span class="hero-metric-name">Platform</span><div class="hero-metric-bar-wrap"><div class="hero-metric-bar" id="hero-bar-platform"></div></div><span class="hero-metric-val" id="hero-val-platform">0%</span></div>
+            <div class="hero-metric-row"><span class="hero-metric-name">Efficiency</span><div class="hero-metric-bar-wrap"><div class="hero-metric-bar" id="hero-bar-efficiency"></div></div><span class="hero-metric-val" id="hero-val-efficiency">0%</span></div>
+          </div>
+        </section>
+
+        <section class="metric-cards">
+          <article class="metric-card engagement"><div class="metric-card-accent"></div><div class="metric-card-header"><span class="metric-icon">EN</span><span class="metric-weight">50%</span></div><div class="metric-score" id="card-engagement">0.00</div><div class="metric-name">Engagement</div><div class="metric-desc">Measures expected audience response from creator and platform activity signals.</div><div class="metric-progress"><div class="metric-progress-fill" id="bar-engagement"></div></div></article>
+          <article class="metric-card timing"><div class="metric-card-accent"></div><div class="metric-card-header"><span class="metric-icon">TM</span><span class="metric-weight">20%</span></div><div class="metric-score" id="card-timing">0.00</div><div class="metric-name">Timing</div><div class="metric-desc">Scores how well the selected hour matches platform peak windows.</div><div class="metric-progress"><div class="metric-progress-fill" id="bar-timing"></div></div></article>
+          <article class="metric-card platform"><div class="metric-card-accent"></div><div class="metric-card-header"><span class="metric-icon">PF</span><span class="metric-weight">15%</span></div><div class="metric-score" id="card-platform">0.00</div><div class="metric-name">Platform fit</div><div class="metric-desc">Checks whether the chosen platform matches short-form or long-form intent.</div><div class="metric-progress"><div class="metric-progress-fill" id="bar-platform"></div></div></article>
+          <article class="metric-card efficiency"><div class="metric-card-accent"></div><div class="metric-card-header"><span class="metric-icon">EF</span><span class="metric-weight">15%</span></div><div class="metric-score" id="card-efficiency">0.00</div><div class="metric-name">Efficiency</div><div class="metric-desc">Keeps recommendation generation fast and reliable.</div><div class="metric-progress"><div class="metric-progress-fill" id="bar-efficiency"></div></div></article>
+        </section>
+
+        <section class="charts-grid">
+          <article class="chart-card"><h3>Instagram activity</h3><p>Hourly activity with the 18-22h peak window visible.</p><div id="ig-activity-bars"></div></article>
+          <article class="chart-card"><h3>YouTube activity</h3><p>Hourly activity with the 20-23h peak window visible.</p><div id="yt-activity-bars"></div></article>
+          <article class="chart-card"><h3>Recommendation distribution</h3><p>Platform, content type, and status breakdown.</p><div class="distribution-layout"><div id="donut-chart" class="donut-chart"></div><div class="distribution-list"><span>Instagram <strong id="dist-ig">-</strong></span><span>YouTube <strong id="dist-yt">-</strong></span><span>Short <strong id="dist-short">-</strong></span><span>Long <strong id="dist-long">-</strong></span><span>Post now <strong id="dist-now">-</strong></span><span>Schedule <strong id="dist-sched">-</strong></span></div></div></article>
+          <article class="chart-card"><h3>Scoring formula</h3><p>A simple weighted composite that stays easy to explain.</p><div id="formula-display"></div></article>
+        </section>
+
+        <section class="card">
+          <div class="card-header"><div><div class="card-title">Score interpretation</div><div class="card-subtitle">Simple quality bands for reading results.</div></div></div>
+          <div class="interpretation-grid" id="interpretation-grid"></div>
+        </section>
+      </main>
+      <footer class="footer">Analytics designed for clarity, not noise.</footer>
+    </div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/analytics.js"></script>
+</body>
+</html>

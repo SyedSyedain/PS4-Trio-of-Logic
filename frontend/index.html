@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creator Content Posting Optimization System</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">CP</span>
+        <span><span class="brand-title">CreatorPost</span><span class="brand-subtitle">Optimization System</span></span>
+      </a>
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <span class="nav-section-label">Workspace</span>
+        <a href="index.html" class="nav-link active"><span class="nav-icon">D</span>Dashboard</a>
+        <a href="submit.html" class="nav-link"><span class="nav-icon">+</span>Submit Content</a>
+        <a href="recommendations.html" class="nav-link"><span class="nav-icon">R</span>Recommendations</a>
+        <a href="analytics.html" class="nav-link"><span class="nav-icon">A</span>Analytics</a>
+      </nav>
+      <div class="sidebar-card"><strong>Posting model live</strong><span>Instagram and YouTube slots are evaluated across 24-hour windows.</span></div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-title">Creator Content Posting Optimization System</div>
+        <div class="topbar-actions"><span class="status-pill"><span class="status-dot"></span>Live <span id="live-clock">--:--:--</span></span></div>
+      </header>
+
+      <main class="page-wrapper">
+        <section class="dashboard-hero">
+          <div class="hero-copy">
+            <span class="eyebrow">Creator operations</span>
+            <h1>Plan every post with clearer timing, platform fit, and confidence.</h1>
+            <p>A calm productivity workspace for creators and teams to decide where to post, when to post, and whether a piece of content should go live now or be scheduled.</p>
+            <div class="hero-actions">
+              <a href="submit.html" class="btn btn-primary">Generate Recommendation</a>
+              <a href="recommendations.html" class="btn btn-outline">View History</a>
+            </div>
+          </div>
+
+          <div class="product-preview" aria-label="Dashboard preview">
+            <div class="preview-toolbar"><span></span><span></span><span></span></div>
+            <div class="preview-grid">
+              <div class="preview-panel large">
+                <div class="preview-label">Recommended slot</div>
+                <div class="preview-value">8:00 PM</div>
+                <div class="preview-line"></div>
+                <div class="preview-line short"></div>
+              </div>
+              <div class="preview-panel">
+                <div class="preview-label">Platform</div>
+                <div class="preview-value small">Instagram</div>
+                <span class="badge badge-post-now">POST NOW</span>
+              </div>
+              <div class="preview-chart">
+                <span style="height:42%"></span><span style="height:56%"></span><span style="height:48%"></span><span style="height:76%"></span><span style="height:92%"></span><span style="height:70%"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid-4 metric-strip">
+          <article class="stat-card"><span class="stat-icon purple">01</span><div class="stat-info"><div class="stat-value" id="stat-total-content">-</div><div class="stat-label">Content items</div><div class="stat-change up">Dataset ready</div></div></article>
+          <article class="stat-card"><span class="stat-icon green">02</span><div class="stat-info"><div class="stat-value" id="stat-total-recs">-</div><div class="stat-label">Recommendations</div><div class="stat-change up">Generated output</div></div></article>
+          <article class="stat-card"><span class="stat-icon blue">03</span><div class="stat-info"><div class="stat-value" id="stat-creators">-</div><div class="stat-label">Active creators</div><div class="stat-change">Creator IDs 1-50</div></div></article>
+          <article class="stat-card"><span class="stat-icon orange">04</span><div class="stat-info"><div class="stat-value" id="stat-avg-score">-</div><div class="stat-label">Average score</div><div class="stat-change up">Weighted model</div></div></article>
+        </section>
+
+        <section class="dashboard-main">
+          <div class="dashboard-left">
+            <article class="card">
+              <div class="card-header">
+                <div><div class="card-title">Time-slot heatmap</div><div class="card-subtitle">Readable 24-hour activity windows for each platform.</div></div>
+                <div class="flex gap-8 wrap"><span class="badge badge-instagram">Instagram</span><span class="badge badge-youtube">YouTube</span></div>
+              </div>
+              <div id="heatmap-container"></div>
+              <div id="heatmap-legend"></div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div><div class="card-title">Recent recommendations</div><div class="card-subtitle">Latest platform, timing, and publish-status decisions.</div></div>
+                <a href="recommendations.html" class="btn btn-outline btn-sm">Open History</a>
+              </div>
+              <div class="table-scroll">
+                <table class="recent-table">
+                  <thead><tr><th>Content</th><th>Type</th><th>Platform</th><th>Time</th><th>Status</th><th>Creator</th></tr></thead>
+                  <tbody id="recent-recs-body"><tr><td colspan="6"><div class="loading-overlay"><div class="spinner"></div> Loading recommendations...</div></td></tr></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+
+          <aside class="dashboard-right">
+            <section class="recommendation-card">
+              <span class="eyebrow">Best next action</span>
+              <h3>Generate a posting recommendation</h3>
+              <p>Submit content details and receive a clean, explainable result card.</p>
+              <a href="submit.html" class="btn btn-primary">Start</a>
+            </section>
+
+            <article class="card">
+              <div class="card-header"><div><div class="card-title">Score quality</div><div class="card-subtitle">Weighted evaluation metrics.</div></div><a href="analytics.html" class="btn btn-outline btn-sm">Details</a></div>
+              <div class="score-mini" id="score-summary-wrap"><div class="loading-overlay"><div class="spinner"></div></div></div>
+              <div class="divider"></div>
+              <div class="flex-between text-muted"><span>Composite score</span><strong class="score-accent">~0.84</strong></div>
+            </article>
+
+            <article class="card">
+              <div class="card-header"><div class="card-title">Decision logic</div></div>
+              <ul class="info-list">
+                <li>Short formats lean toward Instagram.</li>
+                <li>Long formats lean toward YouTube.</li>
+                <li>Peak slots return POST_NOW.</li>
+                <li>Creator and activity signals adjust the final choice.</li>
+              </ul>
+            </article>
+          </aside>
+        </section>
+      </main>
+      <footer class="footer">Built for clear content planning across Instagram and YouTube.</footer>
+    </div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
